@@ -1,0 +1,18 @@
+# Config & secrets
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Données lourdes
+data/train.csv
+
+# Rapports générés
+reports/*.png
+reports/*.csv
+
+# Python cache
+__pycache__/
+*.pyc
+
