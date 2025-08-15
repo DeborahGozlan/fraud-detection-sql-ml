@@ -8,6 +8,45 @@ This project detects fraudulent clicks and suspicious advertising behavior using
 
 It is designed to simulate **real-world messy data**, clean and prepare it in **SQL and Python**, engineer fraud-relevant features, and apply multiple fraud detection techniques before presenting insights in **Tableau/Looker dashboards**.
 
+about the database: 
+original database from kaggle:
+contains 8 variables ip, app, device, os, channel, click_time, attributed_time, is_attributed
+only technical
+enrich database that we are adding with the fallowing variables: 
+Column Name	Type	Description
+user_id	int / string	Simulated unique user ID
+ad_id	int / string	Simulated ad / campaign ID
+email	string	Simulated email (some duplicated / modified for fraud)
+country	string	Simulated country of click
+device_fingerprint	string	Unique ID based on device+OS+browser
+connection_type	string	e.g., wifi, 4g, 5g (useful for fraud detection)
+
+💡 Fraud simulation rules :
+
+5% of IPs will be linked to multiple user_ids.
+
+Some emails will appear in different countries within short time intervals.
+
+Certain device fingerprints will be reused by many user_ids.
+
+our que Louvain trouve de vraies communautés :
+
+Relier :
+
+IP ↔ Email
+
+IP ↔ Device
+
+Email ↔ Campaign
+
+Device ↔ App
+
+Injecter des hubs frauduleux :
+
+1 IP reliée à 20 comptes différents.
+
+1 e-mail reliée à plusieurs devices.
+
 ## II. Goals
 - Build a SQL-first data ingestion & cleaning pipeline
 - Simulate realistic messy data to showcase cleaning expertise
