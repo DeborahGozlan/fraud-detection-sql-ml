@@ -2,36 +2,55 @@
 
 ## I. Overview
 This project detects fraudulent clicks and suspicious advertising behavior using:
-- **SQL-first ingestion & cleaning**
-- **Supervised & unsupervised machine learning**
-- **Graph theory** for fraud community detection
 
-It is designed to simulate **real-world messy data**, clean and prepare it in **SQL and Python**, engineer fraud-relevant features, and apply multiple fraud detection techniques before presenting insights in **Tableau/Looker dashboards**.
+SQL-first ingestion & cleaning
 
-about the database: 
-original database from kaggle:
-contains 8 variables ip, app, device, os, channel, click_time, attributed_time, is_attributed
-only technical
-enrich database that we are adding with the fallowing variables: 
-Column Name	Type	Description
-user_id	int / string	Simulated unique user ID
-ad_id	int / string	Simulated ad / campaign ID
-email	string	Simulated email (some duplicated / modified for fraud)
-country	string	Simulated country of click
-device_fingerprint	string	Unique ID based on device+OS+browser
-connection_type	string	e.g., wifi, 4g, 5g (useful for fraud detection)
+Supervised & unsupervised machine learning
 
-💡 Fraud simulation rules :
+Graph theory for fraud community detection (Louvain algorithm)
 
-5% of IPs will be linked to multiple user_ids.
+It simulates real-world messy data, cleans and prepares it in SQL and Python, engineers fraud-relevant features, and applies multiple fraud detection techniques before presenting insights in Tableau/Looker dashboards.
 
-Some emails will appear in different countries within short time intervals.
+Database
 
-Certain device fingerprints will be reused by many user_ids.
+Original dataset (from Kaggle) contains only technical click variables:
 
-our que Louvain trouve de vraies communautés :
+ip – IP address of the click
 
-Relier :
+app – App ID for marketing
+
+device – Device type ID
+
+os – OS version ID
+
+channel – Channel ID of the ad publisher
+
+click_time – Timestamp of the click (UTC)
+
+attributed_time – Time of app download (if any)
+
+is_attributed – Target label (1 = downloaded, 0 = not)
+
+Enriched Dataset
+
+We add simulated fields for advanced fraud detection:
+
+Column Name	            Type	            Description
+
+user_id	                int / string	    Simulated unique user ID
+ad_id	                int / string	    Simulated ad/campaign ID
+email	                string	            Simulated email (some duplicated/modified for fraud)
+country	                string	            Simulated country of click
+device_fingerprint	    string	            Unique ID based on device + OS + browser
+connection_type	        string	            e.g., wifi, 4g, 5g (useful for fraud detection)
+
+Fraud Simulation Rules
+
+5% of IPs are linked to multiple user_ids
+Some emails appear in multiple countries within short time intervals
+Certain device_fingerprints are reused by many user_ids
+
+Graph links for Louvain detection:
 
 IP ↔ Email
 
@@ -41,11 +60,11 @@ Email ↔ Campaign
 
 Device ↔ App
 
-Injecter des hubs frauduleux :
+Fraud hubs injected:
 
-1 IP reliée à 20 comptes différents.
+1 IP linked to 20 different accounts
 
-1 e-mail reliée à plusieurs devices.
+1 email linked to multiple devices
 
 ## II. Goals
 - Build a SQL-first data ingestion & cleaning pipeline
@@ -101,4 +120,4 @@ def clean_email(email):
 ## VII. Author
 **Deborah Gozlan**  
 Fraud Data Analyst  
-[LinkedIn Profile](https://www.linkedin.com) (update link)
+[LinkedIn Profile](https://www.linkedin.com/in/deborah-gozlan-%F0%9F%8E%97-8a4992246/)
